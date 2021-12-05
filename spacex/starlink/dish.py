@@ -123,7 +123,6 @@ class StarlinkDish:
     @property
     @autoconnect
     def id(self):
-        self._ensure_connected()
         return self._device_info.id
 
     @property
