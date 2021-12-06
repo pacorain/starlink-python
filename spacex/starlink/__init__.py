@@ -11,7 +11,9 @@ You can use the `StarlinkDish` class to connect to Starlink and get information.
 ...   obstructed = dish.status.obstructed
 """
 
-__all__ = ['DishStatus', 'StarlinkDish']
+__all__ = ['StarlinkDish', 'DishStatus', 'OutageReason', 'DishAlert']
 
+from .alert import DishAlert
+from .outage_reason import OutageReason
 from .status import DishStatus
 from .dish import StarlinkDish

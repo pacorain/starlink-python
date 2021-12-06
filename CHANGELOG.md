@@ -1,7 +1,10 @@
-# 0.0.2
-
 Note that while starlink-python is being developed, its APIs are subject to change heavily.
+# 0.0.3
+- Parsed the rest of `DishGetStatusResponse` into `DishStatus` properties
+- Created `DishAlert` enum for alerts
+- Created `OutageReason` enum for outages
 
+# 0.0.2
 ## Changes
 
 - Alias `spacex.starlink.dish.StarlinkDish` to `spacex.starlink.StarlinkDish`
