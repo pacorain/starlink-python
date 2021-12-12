@@ -15,6 +15,8 @@ def autoconnect(fn):
             raise ValueError("StarlinkDish.connect() must be run to get this property")
         return fn(dish, *args, **kwargs)
     return ensure_connected
+
+
 class StarlinkDish:
     """A class representing a connection to the Starlink satellite.
     
