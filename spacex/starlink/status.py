@@ -19,7 +19,7 @@ class DishStatus:
         """An OutageReason corresponding to the reason for the outage, or None if the Starlink is connected"""
         if self.connected:
             return None
-        raw_cause_val = self.status_response.cause.value
+        raw_cause_val = self.raw.cause.value
         return OutageReason(raw_cause_val)
 
     @property
