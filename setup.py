@@ -5,7 +5,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="starlink-python",
-    version="0.0.3",
+    version="0.1.0",
     description="Connect to SpaceX Starlink",
     author="Austin Rainwater",
     author_email="hey@paco.wtf",
