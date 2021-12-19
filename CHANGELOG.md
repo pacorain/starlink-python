@@ -1,6 +1,6 @@
 Note that while starlink-python is being developed, its APIs are subject to change heavily.
 
-# 0.1.0
+# 0.1.1
 
 - Prepare to publish to PyPI
 - Write some tests (though nearly not enough)
