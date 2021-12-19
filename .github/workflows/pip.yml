@@ -22,7 +22,7 @@ jobs:
         python -m pip install --upgrade dist/*.whl
     - name: Test
       run: |
-        pythom -m unittest discover -v -s test/spacex/starlink
+        python -m unittest discover -v -s test/spacex/starlink
     - name: Build and publish
       env:
         TWINE_USERNAME: __token__
