@@ -1,15 +1,19 @@
 Note that while starlink-python is being developed, its APIs are subject to change heavily.
 
-# 0.1.1
+# 0.1.2
 
-- Prepare to publish to PyPI
-- Write some tests (though nearly not enough)
-- Also write hardware_test.py for new hardware or firmware releases that may break functionality in the future.
+- Wrap RpcErrors in spacex.starlink.CommunicationError when communication with satellite fails
 
 ## TODO:
 - I discovered that a lot of the stuff I was looking for (such as public IP address) are stored in the router. I should make a StarlinkRouter class.
 - Write more tests to make sure the right gRPC calls are being made to get data.
 - Write better docs and document API endpoints somewhere
+
+# 0.1.1
+
+- Prepare to publish to PyPI
+- Write some tests (though nearly not enough)
+- Also write hardware_test.py for new hardware or firmware releases that may break functionality in the future.
 
 # 0.0.3
 - Parsed the rest of `DishGetStatusResponse` into `DishStatus` properties

@@ -9,7 +9,7 @@ class DishAlert(str, Enum):
         obj.label = label
         return obj
 
-    MOTORS_STUCK = ('motors_stuck', 'Dish motots stuck')
+    MOTORS_STUCK = ('motors_stuck', 'Dish motors stuck')
     THERMAL_THROTTLE = ('thermal_throttle', 'Throttled due to temperature')
     THERMAL_SHUTDOWN = ('thermal_shutdown', 'Shutdown due to themral conditions')
     MAST_NOT_NEAR_VERTICAL = ('mast_not_near_vertical', 'Mast is not near vertical')

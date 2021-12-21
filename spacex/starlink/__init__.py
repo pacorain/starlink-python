@@ -13,6 +13,9 @@ You can use the `StarlinkDish` class to connect to Starlink and get information.
 
 __all__ = ['StarlinkDish', 'DishStatus', 'OutageReason', 'DishAlert']
 
+class CommunicationError(Exception):
+    pass
+
 from .alert import DishAlert
 from .outage_reason import OutageReason
 from .status import DishStatus

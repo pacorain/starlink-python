@@ -1,6 +1,10 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
+from grpc import RpcError
+
+from spacex.starlink import CommunicationError
+
 class TestStarlinkDish(TestCase):
     @patch('grpc.insecure_channel')
     @patch('yagrc.reflector.GrpcReflectionClient')
@@ -69,5 +73,30 @@ class TestStarlinkDish(TestCase):
         mock_channel.assert_called()
         dish.stub.Handle.assert_called()
 
-        
+    @patch('grpc.insecure_channel')
+    @patch('yagrc.reflector.GrpcReflectionClient')
+    def test_cannot_connect(self, mock_reflector, mock_channel):
+        from spacex.starlink import StarlinkDish
+
+        dish = StarlinkDish()
+        dish.reflector = MagicMock()
+        dish.reflector.load_protocols.side_effect = RpcError()
+
+        with self.assertRaises(CommunicationError):
+            dish.connect()
+
+    @patch('grpc.insecure_channel')
+    @patch('yagrc.reflector.GrpcReflectionClient')
+    def test_communication_error(self, mock_reflector, mock_channel):
+        from spacex.starlink import StarlinkDish
+
+        dish = StarlinkDish()
+        dish.reflector = MagicMock()
+        dish.connect()
+        dish.refresh()
+
+        dish.stub.Handle.side_effect = RpcError()
+
+        with self.assertRaises(CommunicationError):
+            dish.refresh()
     
