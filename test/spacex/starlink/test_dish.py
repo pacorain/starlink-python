@@ -87,14 +87,17 @@ class TestStarlinkDish(TestCase):
 
     @patch('grpc.insecure_channel')
     @patch('yagrc.reflector.GrpcReflectionClient')
-    def test_communication_error(self, mock_reflector, mock_channel):
+    def test_communication_broken(self, mock_reflector, mock_channel):
         from spacex.starlink import StarlinkDish
 
         dish = StarlinkDish()
         dish.reflector = MagicMock()
         dish.connect()
+        
+        # The first attempt should not raise an error - we're returning a value with stub.Handle
         dish.refresh()
 
+        # The second attempt will raise an RpcError after failing to communicate with the satellite.
         dish.stub.Handle.side_effect = RpcError()
 
         with self.assertRaises(CommunicationError):
