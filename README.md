@@ -1,6 +1,6 @@
 # Starlink Python
 
-![Status: Pre-Alpha](https://img.shields.io/badge/status-pre--alpha-orange)
+![Status: Pre-Alpha](https://img.shields.io/badge/status-alpha-yellow)
 
 A Python library for loading data from a [SpaceX Starlink](https://www.starlink.com/) satellite.
 
