@@ -3,6 +3,7 @@ import grpc
 from yagrc.reflector import GrpcReflectionClient
 
 from .status import DishStatus
+from . import CommunicationError
 
 Request = None
 
@@ -78,21 +79,27 @@ class StarlinkDish:
         global Request
 
         self.channel = grpc.insecure_channel(self.address)
-        self.reflector.load_protocols(self.channel)
-        
-        DeviceStub = self.reflector.service_stub_class("SpaceX.API.Device.Device")
-        Request = self.reflector.message_class("SpaceX.API.Device.Request")
+        try:
+            self.reflector.load_protocols(self.channel)
+            
+            DeviceStub = self.reflector.service_stub_class("SpaceX.API.Device.Device")
+            Request = self.reflector.message_class("SpaceX.API.Device.Request")
 
-        self.stub = DeviceStub(self.channel)
-        response = self.stub.Handle(Request(get_device_info={}))
-        self._device_info = response.get_device_info.device_info
+            self.stub = DeviceStub(self.channel)
+            response = self.stub.Handle(Request(get_device_info={}))
+            self._device_info = response.get_device_info.device_info
+        except grpc.RpcError as e:
+            raise CommunicationError from e
         if refresh:
             self.refresh()
 
     @autoconnect
     def refresh(self):
         """Refreshes status data from all endpoints. Right now, just calls SpaceX.API.Device.Request.get_status"""
-        self.fetch_status()
+        try:
+            self.fetch_status()
+        except grpc.RpcError as e:
+            raise CommunicationError from e
 
     @autoconnect
     def fetch_status(self):
