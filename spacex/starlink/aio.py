@@ -60,7 +60,7 @@ class AsyncStarlinkDish(StarlinkDish):
         except grpc.RpcError as e:
             raise CommunicationError from e
         if refresh:
-            self.refresh()
+            await self.refresh()
 
     async def refresh(self):
         """Refreshes status data from all endpoints. Right now, just calls SpaceX.API.Device.Request.get_status"""
