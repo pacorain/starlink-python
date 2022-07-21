@@ -20,3 +20,4 @@ from .alert import DishAlert
 from .outage_reason import OutageReason
 from .status import DishStatus
 from .dish import StarlinkDish
+from .aio import AsyncStarlinkDish

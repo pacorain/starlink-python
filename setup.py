@@ -8,8 +8,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="starlink-python",
-    version="0.1.2",
-    description="Connect to SpaceX Starlink",
+    version="0.1.3",
+    description="Connect to your SpaceX Starlink",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Austin Rainwater",
