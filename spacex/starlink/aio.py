@@ -33,6 +33,14 @@ class AsyncStarlinkDish(StarlinkDish):
         
         super().__init__(address, autoconnect=False)
 
+    async def __aenter__(self):
+        await self.connect()
+        return self
+
+    async def __aexit__(self, *_):
+        if self.channel:
+            await self.channel.close()
+
     async def connect(self, refresh=True):
         """Opens a gRPC connection to the satellite and reflects the available classes.
         

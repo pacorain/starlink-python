@@ -22,3 +22,11 @@ def is_my_dish_obstructed() -> bool:
     with StarlinkDish() as dish:
         return dish.status.obstructed
 ```
+
+If you use asyncio, you can import `spacex.starlink.aio.AsyncStarlinkDish.
+
+```python
+from spacex.starlink.aio import AsyncStarlinkDish
+
+async def is_my_dish_obstructed() -> bool:
+    async with StarlinkDish() as dish:
